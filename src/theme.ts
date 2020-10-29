@@ -6,6 +6,7 @@ import { red, grey } from '@material-ui/core/colors';
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
+      'Poppins',
       'system-ui',
       '-apple-system',
       'BlinkMacSystemFont',
@@ -18,19 +19,20 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: 'rgb(29, 161, 242)',
+      main: '#f08080',
       dark: 'rgb(26, 145, 218)',
       contrastText: '#fff',
     },
     secondary: {
-      main: 'rgb(26, 145, 218)',
+      main: '#f7f8fa',
+      dark: grey[700],
     },
 
     error: {
       main: red.A400,
     },
     background: {
-      default: '#fff',
+      default: '#f7f8fa',
     },
     // All text on the website
     text: {
@@ -46,6 +48,11 @@ const theme = createMuiTheme({
         fontSize: 16,
         height: 40,
         fontWeight: 700,
+      },
+    },
+    MuiDrawer: {
+      paper: {
+        backgroundColor: '#f7f8fa',
       },
     },
     MuiFilledInput: {
