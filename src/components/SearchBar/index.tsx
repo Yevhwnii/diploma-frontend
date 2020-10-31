@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useSearchBarStyles = makeStyles((theme) => ({
   searchBar: {
-    padding: '15px 5px',
+    padding: '5px 20px 20px 20px',
     '& > div': {
       borderRadius: 15,
       transition: 'border .3s ease',
