@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
@@ -6,6 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import NavigationBar from './containers/AppBar';
 import SideMenu from './containers/SideMenu';
+import Restaurants from '../Restaurants';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
@@ -13,6 +15,7 @@ const Main: React.FC = () => {
   const theme = useTheme();
   const mdSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const smSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const xsSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   // If viewport is less than 950px, side menu automatically closes
   useEffect(() => {
@@ -57,7 +60,18 @@ const Main: React.FC = () => {
           />
         </Grid>
         <Grid item xs={showSideMenu ? 10 : 12}>
-          <h1>Application</h1>
+          <Switch>
+            <Route path='/restaurants' exact>
+              <Restaurants
+                mdScreen={mdSmallScreen}
+                smallScreen={xsSmallScreen}
+              />
+            </Route>
+            s
+            <Route path='/'>
+              <h1>Application</h1>
+            </Route>
+          </Switch>
         </Grid>
       </Grid>
     </Grid>
