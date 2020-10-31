@@ -1,0 +1,34 @@
+{
+    "restaurants": [
+        {
+            "id": 1,
+            "_id": "5f625ff6bd97609c6925e2b4",
+            "name": "Maxxi Pizza",
+            "description": "Pizzeria MaxiPizza - Doskonała pizza w super cenie. Oferujemy wiele rodzajów pizzy na cienkim i grubym cieście.",
+            "imageUrl": "https://bcassetcdn.com/public/blog/wp-content/uploads/2019/07/18094833/the-red-cafe.png",
+            "address": "Unicka, 3",
+            "webSite": "maxipizza.pl",
+            "tags": "#pizza #coffee #burger"
+        },
+        {
+            "id": 2,
+            "_id": "5f625ff6bd97609c6925e2b5",
+            "name": "Kebab U Mustafy",
+            "description": "U Kebaba Mustafy masz do wyboru: rodzaj dania, mięsa, pieczywa, dodatków, sosów i napoi. To ponad milion kombinacji w jaki sposób zjesz! Sprawdź menu.",
+            "imageUrl": "https://lh3.googleusercontent.com/proxy/qQazqE44XmqP9o3aHbt-5N9E6ZP5pll-9RCnQRNLWbklYajU2swZOR3YTE4JoO6q6EP3C1GU2Jxa5eYy6pBvq1qzNzEryyLe5aFf5pdkIH0LBmWXTXPEfvJC",
+            "address": "Unicka, 4",
+            "webSite": "kebabmustafa.pl",
+            "tags": "#kebab #coffee"
+        },
+        {
+            "id": 3,
+            "_id": "5f625ff6bd97609c6925e2b3",
+            "name": "Sexy Duck",
+            "description": "Craft Italian Kitchen. Czuj się naszym gościem ",
+            "imageUrl": "https://i.ibb.co/BtSkSX5/Untitled.jpg",
+            "address": "Stanisława Staszica 1, 20-081 Lublin",
+            "webSite": "sexyduck.pl/lublin",
+            "tags": "#pizza #coffee #burger"
+        }
+    ]
+}
