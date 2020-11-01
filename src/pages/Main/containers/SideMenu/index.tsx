@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SideDrawer from '../../../../components/Drawer';
 import CustomizedListItem from '../../../../components/ListItem';
 import SearchBar from '../../../../components/SearchBar';
-import { useHistory } from 'react-router-dom';
+import { MediaContext } from '../../../../common/context/mediaContext';
 
 const useSideMenuStyles = makeStyles(() => ({
   header: {
@@ -33,17 +34,16 @@ interface SideMenuProps {
   show: boolean;
   onClose: () => void;
   drawerVariant: 'permanent' | 'persistent' | 'temporary' | undefined;
-  smSmallScreen: boolean;
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({
   show,
   onClose,
   drawerVariant,
-  smSmallScreen,
 }) => {
   const classes = useSideMenuStyles();
   const history = useHistory();
+  const media = useContext(MediaContext);
 
   return (
     <SideDrawer drawerVariant={drawerVariant} show={show} onClose={onClose}>
@@ -56,7 +56,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
       )}
 
       <List component='nav' aria-labelledby='side menu items'>
-        {smSmallScreen && (
+        {media.smSmallScreen && (
           <>
             <Typography className={classes.header} variant='h6' noWrap>
               Recommendation system

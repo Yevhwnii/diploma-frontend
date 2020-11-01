@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 
+import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import { MediaContext } from '../../../../common/context/mediaContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,14 +47,11 @@ const useStyles = makeStyles((theme) => ({
 
 interface NavigationBarProps {
   onDrawerToggle: () => void;
-  smSmallScreen: boolean;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({
-  onDrawerToggle,
-  smSmallScreen,
-}) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({ onDrawerToggle }) => {
   const classes = useStyles();
+  const media = useContext(MediaContext);
 
   return (
     <div className={classes.root}>
@@ -72,7 +71,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               className={classes.menuButton}>
               <MenuIcon />
             </IconButton>
-            {!smSmallScreen && (
+            {!media.smSmallScreen && (
               <Typography variant='h6' noWrap>
                 Recommendation system
               </Typography>
