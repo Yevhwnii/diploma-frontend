@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export interface Restaurant {
+export interface IRestaurant {
   id: number;
   _id: string;
   name: string;
@@ -12,9 +12,13 @@ export interface Restaurant {
 }
 
 export const RestrauntsApi = {
-  getAll: async (): Promise<Restaurant[]> => {
+  getAll: async (): Promise<IRestaurant[]> => {
     const response = await axios.get('/restaurants');
-    const restaurants: Restaurant[] = response.data;
+    const restaurants: IRestaurant[] = response.data;
     return restaurants;
+  },
+  getSingle: async (id: string): Promise<IRestaurant> => {
+    const response = await axios.get(`/restaurants/${id}`);
+    return response.data;
   },
 };
