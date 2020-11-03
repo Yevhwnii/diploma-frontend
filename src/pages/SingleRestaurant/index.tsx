@@ -14,6 +14,7 @@ import { IRestaurant, RestrauntsApi } from '../../common/api/restraurantsApi';
 import Layout from '../../components/Layout';
 import Spinner from '../../components/Spinner';
 import { IMedia, MediaContext } from '../../common/context/mediaContext';
+import Menu from '../../components/Menu';
 
 const useSingRestaurantStyles = makeStyles((theme) => ({
   paper: (media: IMedia) => ({
@@ -33,7 +34,8 @@ const useSingRestaurantStyles = makeStyles((theme) => ({
     height: '33%',
     '& div': {
       width: '100%',
-      maxWidth: 470,
+      maxWidth: 350,
+      maxHeight: 150,
       height: '100%',
       borderRadius: 0,
     },
@@ -106,6 +108,7 @@ const SingleRestaurant = () => {
   const classes = useSingRestaurantStyles(media);
   const [restaurant, setRestaurant] = useState<IRestaurant | null>();
   const [loading, setLoading] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const params: { id: string } = useParams();
 
   useEffect(() => {
@@ -117,6 +120,13 @@ const SingleRestaurant = () => {
     };
     getRestaurant(params.id);
   }, [params.id]);
+
+  const handleOpenMenu = () => {
+    setShowMenu(true);
+  };
+  const handleCloseMenu = () => {
+    setShowMenu(false);
+  };
 
   return (
     <Layout>
@@ -150,10 +160,20 @@ const SingleRestaurant = () => {
             <Button color='primary' variant='contained'>
               Show on the map
             </Button>
-            <Button color='primary' variant='contained'>
+            <Button
+              onClick={handleOpenMenu}
+              color='primary'
+              variant='contained'>
               Show menu
             </Button>
           </div>
+          {showMenu ? (
+            <Menu
+              restaurant={restaurant}
+              show={showMenu}
+              onClose={handleCloseMenu}
+            />
+          ) : null}
         </Paper>
       ) : (
         <Spinner />
