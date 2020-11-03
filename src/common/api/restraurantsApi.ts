@@ -9,6 +9,21 @@ export interface IRestaurant {
   tags: string;
   webSite: string;
   imageUrl: string;
+  menu?: {
+    _id: string;
+    items: MenuItem[];
+  };
+}
+
+export interface MenuItem {
+  category: string;
+  menuItems: [
+    {
+      id: string;
+      name: string;
+      price: string;
+    }
+  ];
 }
 
 export const RestrauntsApi = {
