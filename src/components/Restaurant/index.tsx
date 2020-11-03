@@ -35,7 +35,7 @@ const useRestaurantStyles = makeStyles(() => ({
     '& div': {
       borderRadius: 0,
       width: '100%',
-      maxHeight: 130,
+      maxHeight: 100,
       height: 'auto',
     },
   },
