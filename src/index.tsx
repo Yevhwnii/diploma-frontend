@@ -10,14 +10,12 @@ import App from './App';
 import theme from './theme';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <ThemeProvider theme={theme}>
-        <CssBaseline>
-          <App />
-        </CssBaseline>
-      </ThemeProvider>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <App />
+      </CssBaseline>
+    </ThemeProvider>
+  </Router>,
   document.getElementById('root')
 );
