@@ -70,7 +70,12 @@ const SideMenu: React.FC<SideMenuProps> = ({
         <CustomizedListItem
           icon={<MapIcon />}
           text='Map'
-          onClick={() => alert('Map')}
+          onClick={() => {
+            if (drawerVariant === 'temporary') {
+              onClose();
+            }
+            history.push('/map');
+          }}
         />
 
         <CustomizedListItem
