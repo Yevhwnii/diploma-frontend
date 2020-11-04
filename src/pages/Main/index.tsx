@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -8,6 +8,7 @@ import SideMenu from './containers/SideMenu';
 import Restaurants from '../Restaurants';
 import { MediaContext } from '../../common/context/mediaContext';
 import SingleRestaurant from '../SingleRestaurant';
+import Map from '../Map';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
@@ -61,10 +62,10 @@ const Main: React.FC = () => {
             <Route path='/restaurants/:id'>
               <SingleRestaurant />
             </Route>
-
-            <Route path='/'>
-              <h1>Application</h1>
+            <Route path='/map'>
+              <Map />
             </Route>
+            <Redirect to='/map' />
           </Switch>
         </Grid>
       </Grid>
