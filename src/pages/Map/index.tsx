@@ -60,6 +60,7 @@ const Map = () => {
         {restaurants.map((restaurant: any) => {
           return (
             <Marker
+              key={restaurant._id}
               position={{
                 lat: parseFloat(restaurant.location.lat),
                 lng: parseFloat(restaurant.location.lng),
