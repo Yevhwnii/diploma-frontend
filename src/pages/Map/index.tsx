@@ -1,31 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import { usePosition } from 'use-position';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from '@react-google-maps/api';
 
 import { mapOptions } from './mapOptions';
 import Spinner from '../../components/Spinner';
-import { RestrauntsApi } from '../../common/api/restraurantsApi';
+import { IRestaurant, RestrauntsApi } from '../../common/api/restraurantsApi';
+import RestaurantMapMobile from '../../components/Restaurant/RestaurantMap';
+import { MediaContext } from '../../common/context/mediaContext';
+import Restaurant from '../../components/Restaurant';
 
 const mapContainerStyle = {
   width: '100%',
   height: 'calc(100vh - 64px)',
 };
 
-const Map = () => {
+const center = {
+  lat: 51.24691,
+  lng: 22.57362,
+};
+
+const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
   });
-  const { latitude, longitude } = usePosition(false, {
-    enableHighAccuracy: true,
-    maximumAge: Infinity,
-    timeout: 0,
+  const media = useContext(MediaContext);
+  const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
+  const [showInfoWindowId, setShowInfoWindowId] = useState<string>('');
+  const [userPosition, setUserPosiition] = useState({
+    lat: 0,
+    lng: 0,
   });
-  const [restaurants, setRestaurants] = useState<any>([]);
+
+  const handleMarkerClick = useCallback((_: any, restaurant: IRestaurant) => {
+    setShowInfoWindowId(restaurant._id);
+  }, []);
+
+  const handleInfoWindowClose = useCallback(() => {
+    setShowInfoWindowId('');
+  }, []);
 
   useEffect(() => {
     const getResponse = async () => {
-      let restaurantsTemp: any[] = [];
+      let restaurantsTemp: IRestaurant[] = [];
       const response = await RestrauntsApi.getAll();
       response.forEach(async (restaurant) => {
         const response = await RestrauntsApi.getRestaurantLocation(restaurant);
@@ -41,6 +62,13 @@ const Map = () => {
     };
 
     getResponse();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserPosiition({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
   }, []);
 
   if (loadError) return <h1>Error</h1>;
@@ -52,20 +80,40 @@ const Map = () => {
         mapContainerStyle={mapContainerStyle}
         zoom={15}
         options={mapOptions}
-        center={{
-          lat: 51.24691,
-          lng: 22.57362,
-        }}>
-        <Marker position={{ lat: latitude, lng: longitude }} />
-        {restaurants.map((restaurant: any) => {
+        onClick={handleInfoWindowClose}
+        center={center}>
+        <Marker title='User location' position={userPosition} />
+        {restaurants.map((restaurant: IRestaurant) => {
           return (
-            <Marker
-              key={restaurant._id}
-              position={{
-                lat: parseFloat(restaurant.location.lat),
-                lng: parseFloat(restaurant.location.lng),
-              }}
-            />
+            <>
+              <Marker
+                key={restaurant._id}
+                title={restaurant.name}
+                onClick={(e) => handleMarkerClick(e, restaurant)}
+                position={{
+                  lat: restaurant.location!.lat,
+                  lng: restaurant.location!.lng,
+                }}>
+                {showInfoWindowId === restaurant._id ? (
+                  <InfoWindow
+                    key={restaurant.id}
+                    onCloseClick={handleInfoWindowClose}>
+                    {media.xsSmallScreen ? (
+                      <RestaurantMapMobile
+                        key={restaurant.webSite}
+                        restaurant={restaurant}
+                      />
+                    ) : (
+                      <Restaurant
+                        key={restaurant.webSite}
+                        disableBottomBorder
+                        restaurant={restaurant}
+                      />
+                    )}
+                  </InfoWindow>
+                ) : null}
+              </Marker>
+            </>
           );
         })}
       </GoogleMap>
@@ -73,4 +121,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default React.memo(Map);
