@@ -6,6 +6,7 @@ export interface IRestaurant {
   _id: string;
   name: string;
   address: string;
+  location?: ILocation;
   description: string;
   tags: string;
   webSite: string;
