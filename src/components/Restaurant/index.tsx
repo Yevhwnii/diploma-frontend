@@ -75,11 +75,15 @@ const useRestaurantStyles = makeStyles(() => ({
   }),
 }));
 
-interface RestaurantProps {
+export interface RestaurantProps {
   restaurant: IRestaurant;
+  disableBottomBorder?: boolean;
 }
 
-const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
+const Restaurant: React.FC<RestaurantProps> = ({
+  restaurant,
+  disableBottomBorder = false,
+}) => {
   const media = useContext(MediaContext);
   const history = useHistory();
   const classes = useRestaurantStyles({
@@ -115,7 +119,7 @@ const Restaurant: React.FC<RestaurantProps> = ({ restaurant }) => {
           </Grid>
         </ListItem>
       </ButtonBase>
-      <Divider />
+      {!disableBottomBorder && <Divider />}
     </>
   );
 };
