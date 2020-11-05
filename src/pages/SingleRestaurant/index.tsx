@@ -157,9 +157,18 @@ const SingleRestaurant = () => {
             <Typography>{restaurant?.tags}</Typography>
           </div>
           <div className={classes.actions}>
-            <Button color='primary' variant='contained'>
-              Show on the map
-            </Button>
+            <Link
+              target='_blank'
+              href={`https://www.google.com/maps/place/${restaurant?.address!}/@${
+                restaurant?.location?.lat
+              },${restaurant?.location?.lng},17z`}>
+              <Button color='primary' variant='contained'>
+                <Typography
+                  style={{ fontSize: 16, lineHeight: 1, fontWeight: 600 }}>
+                  Show on google maps
+                </Typography>
+              </Button>
+            </Link>
             <Button
               onClick={handleOpenMenu}
               color='primary'
