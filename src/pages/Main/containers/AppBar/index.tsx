@@ -9,8 +9,10 @@ import Button from '@material-ui/core/Button';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import { MediaContext } from '../../../../common/context/mediaContext';
+import { AuthContext } from '../../../../common/context/authContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +54,7 @@ interface NavigationBarProps {
 const NavigationBar: React.FC<NavigationBarProps> = ({ onDrawerToggle }) => {
   const classes = useStyles();
   const media = useContext(MediaContext);
+  const auth = useContext(AuthContext);
 
   return (
     <div className={classes.root}>
@@ -78,11 +81,19 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onDrawerToggle }) => {
             )}
           </div>
           <div className={classes.headerLogout}>
-            <Button
-              color='secondary'
-              endIcon={<ExitToAppIcon style={{ fontSize: 20 }} />}>
-              Logout
-            </Button>
+            {auth.isAuth ? (
+              <Button
+                color='secondary'
+                endIcon={<ExitToAppIcon style={{ fontSize: 20 }} />}>
+                Logout
+              </Button>
+            ) : (
+              <Button
+                color='secondary'
+                endIcon={<MeetingRoomIcon style={{ fontSize: 20 }} />}>
+                Sing In
+              </Button>
+            )}
           </div>
         </Toolbar>
       </AppBar>
