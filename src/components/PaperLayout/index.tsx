@@ -17,14 +17,15 @@ const usePaperLayoutStyles = makeStyles(() => ({
 
 interface PaperProps {
   children: React.ReactNode;
+  styles?: {};
 }
 
-const PaperLayout: React.FC<PaperProps> = ({ children }) => {
+const PaperLayout: React.FC<PaperProps> = ({ children, styles }) => {
   const media = useContext(MediaContext);
   const classes = usePaperLayoutStyles(media);
 
   return (
-    <Paper className={classes.paper} elevation={2}>
+    <Paper className={classes.paper} style={{ ...styles }} elevation={2}>
       {children}
     </Paper>
   );
