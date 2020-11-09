@@ -6,7 +6,7 @@ export interface IMedia {
   xsSmallScreen: boolean;
 }
 
-const initialState = {
+const initialState: IMedia = {
   mdSmallScreen: false,
   smSmallScreen: false,
   xsSmallScreen: false,
