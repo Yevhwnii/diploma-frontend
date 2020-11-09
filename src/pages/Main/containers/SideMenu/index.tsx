@@ -15,6 +15,7 @@ import SideDrawer from '../../../../components/Drawer';
 import CustomizedListItem from '../../../../components/ListItem';
 import SearchBar from '../../../../components/SearchBar';
 import { MediaContext } from '../../../../common/context/mediaContext';
+import { AuthContext } from '../../../../common/context/authContext';
 
 const useSideMenuStyles = makeStyles(() => ({
   header: {
@@ -44,6 +45,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
   const classes = useSideMenuStyles();
   const history = useHistory();
   const media = useContext(MediaContext);
+  const auth = useContext(AuthContext);
 
   return (
     <SideDrawer drawerVariant={drawerVariant} show={show} onClose={onClose}>
@@ -78,11 +80,18 @@ const SideMenu: React.FC<SideMenuProps> = ({
           }}
         />
 
-        <CustomizedListItem
-          icon={<ProfileIcon />}
-          text='Profile'
-          onClick={() => alert('Profile')}
-        />
+        {auth.isAuth && (
+          <CustomizedListItem
+            icon={<ProfileIcon />}
+            text='Profile'
+            onClick={() => {
+              if (drawerVariant === 'temporary') {
+                onClose();
+              }
+              history.push('/profile');
+            }}
+          />
+        )}
 
         <CustomizedListItem
           icon={<RestaurantIcon />}
