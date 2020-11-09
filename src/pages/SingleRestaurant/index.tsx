@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
-import { bulletSymbol } from '../../common/symbols';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
@@ -15,17 +13,10 @@ import Layout from '../../components/Layout';
 import Spinner from '../../components/Spinner';
 import { IMedia, MediaContext } from '../../common/context/mediaContext';
 import Menu from '../../components/Menu';
+import PaperLayout from '../../components/PaperLayout';
+import { bulletSymbol } from '../../common/symbols';
 
 const useSingRestaurantStyles = makeStyles((theme) => ({
-  paper: (media: IMedia) => ({
-    padding: 10,
-    marginTop: media.xsSmallScreen ? 0 : 25,
-    height: media.xsSmallScreen ? '100%' : '70%',
-    borderRadius: 15,
-    boxShadow: ' 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-    display: 'flex',
-    flexDirection: 'column',
-  }),
   avatar: {
     padding: 7,
     display: 'flex',
@@ -131,7 +122,7 @@ const SingleRestaurant = () => {
   return (
     <Layout>
       {!loading ? (
-        <Paper className={classes.paper} elevation={2}>
+        <PaperLayout>
           <div className={classes.avatar}>
             <Avatar
               alt={`${restaurant?.name} restaurant`}
@@ -183,7 +174,7 @@ const SingleRestaurant = () => {
               onClose={handleCloseMenu}
             />
           ) : null}
-        </Paper>
+        </PaperLayout>
       ) : (
         <Spinner />
       )}
