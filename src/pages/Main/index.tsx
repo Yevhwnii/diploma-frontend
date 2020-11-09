@@ -9,6 +9,7 @@ import Restaurants from '../Restaurants';
 import { MediaContext } from '../../common/context/mediaContext';
 import SingleRestaurant from '../SingleRestaurant';
 import Map from '../Map';
+import PageNotFound from '../404';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
@@ -64,6 +65,9 @@ const Main: React.FC = () => {
             </Route>
             <Route path='/map'>
               <Map />
+            </Route>
+            <Route path='/'>
+              <PageNotFound />
             </Route>
             <Redirect to='/map' />
           </Switch>
