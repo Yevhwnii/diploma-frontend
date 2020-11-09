@@ -4,19 +4,28 @@ import Main from './pages/Main';
 import { MediaContext } from './common/context/mediaContext';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { AuthContext } from './common/context/authContext';
 
 function App() {
   const theme = useTheme();
   return (
     <div className='App'>
-      <MediaContext.Provider
+      <AuthContext.Provider
         value={{
-          mdSmallScreen: useMediaQuery(theme.breakpoints.down('md')),
-          smSmallScreen: useMediaQuery(theme.breakpoints.down('sm')),
-          xsSmallScreen: useMediaQuery(theme.breakpoints.down('xs')),
+          isAuth: true,
+          about: 'I love sneaky beaky like ghost',
+          fullname: 'Yevhenii Breiter',
+          username: 'Mirandoo',
         }}>
-        <Main />
-      </MediaContext.Provider>
+        <MediaContext.Provider
+          value={{
+            mdSmallScreen: useMediaQuery(theme.breakpoints.down('md')),
+            smSmallScreen: useMediaQuery(theme.breakpoints.down('sm')),
+            xsSmallScreen: useMediaQuery(theme.breakpoints.down('xs')),
+          }}>
+          <Main />
+        </MediaContext.Provider>
+      </AuthContext.Provider>
     </div>
   );
 }
