@@ -10,11 +10,14 @@ import { MediaContext } from '../../common/context/mediaContext';
 import SingleRestaurant from '../SingleRestaurant';
 import Map from '../Map';
 import PageNotFound from '../404';
+import Profile from '../Profile';
+import { AuthContext } from '../../common/context/authContext';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
   const [sideMenuStyles, setSideMenuStyles] = useState({});
   const media = useContext(MediaContext);
+  const auth = useContext(AuthContext);
   const mdSmallScreen = media.mdSmallScreen;
 
   // If viewport is less than 950px, side menu automatically closes
@@ -66,6 +69,11 @@ const Main: React.FC = () => {
             <Route path='/map'>
               <Map />
             </Route>
+            {auth.isAuth && (
+              <Route path='/profile'>
+                <Profile />
+              </Route>
+            )}
             <Route path='/'>
               <PageNotFound />
             </Route>
