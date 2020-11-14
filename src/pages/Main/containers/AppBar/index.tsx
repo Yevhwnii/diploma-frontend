@@ -13,6 +13,7 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import { MediaContext } from '../../../../common/context/mediaContext';
 import { AuthContext } from '../../../../common/context/authContext';
+import SignIn from '../../../SignIn';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +84,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onDrawerToggle }) => {
           <div className={classes.headerLogout}>
             {auth.isAuth ? (
               <Button
+                onClick={auth.logout}
                 color='secondary'
                 endIcon={<ExitToAppIcon style={{ fontSize: 20 }} />}>
                 Logout
@@ -90,12 +92,19 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onDrawerToggle }) => {
             ) : (
               <Button
                 color='secondary'
+                onClick={auth.toogleSignInModal}
                 endIcon={<MeetingRoomIcon style={{ fontSize: 20 }} />}>
                 Sing In
               </Button>
             )}
           </div>
         </Toolbar>
+        {auth.showSignInModal && (
+          <SignIn
+            open={auth.showSignInModal}
+            onClose={auth.toogleSignInModal}
+          />
+        )}
       </AppBar>
     </div>
   );
