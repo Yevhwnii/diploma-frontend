@@ -66,14 +66,14 @@ const Main: React.FC = () => {
             <Route path='/restaurants/:id'>
               <SingleRestaurant />
             </Route>
-            <Route path='/map'>
-              <Map />
-            </Route>
             {auth.isAuth && (
               <Route path='/profile'>
                 <Profile />
               </Route>
             )}
+            <Route path='/' exact>
+              <Map />
+            </Route>
             <Route path='/'>
               <PageNotFound />
             </Route>
