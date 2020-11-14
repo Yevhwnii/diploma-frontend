@@ -5,6 +5,10 @@ export interface IAuth {
   username: string;
   fullname: string;
   about: string;
+  showSignInModal: boolean;
+  toogleSignInModal: () => void;
+  login: () => void;
+  logout: () => void;
 }
 
 const initialState: IAuth = {
@@ -12,6 +16,10 @@ const initialState: IAuth = {
   username: '',
   fullname: '',
   about: '',
+  showSignInModal: false,
+  toogleSignInModal: () => {},
+  login: () => {},
+  logout: () => {},
 };
 
 export const AuthContext = createContext(initialState);
