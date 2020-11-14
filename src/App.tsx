@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Main from './pages/Main';
 import { MediaContext } from './common/context/mediaContext';
@@ -8,14 +8,32 @@ import { AuthContext } from './common/context/authContext';
 
 function App() {
   const theme = useTheme();
+  const [showSignInForm, setShowSignInForm] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const handleSingInFormToogle = useCallback(() => {
+    setShowSignInForm(!showSignInForm);
+  }, [showSignInForm]);
+
+  const login = useCallback(() => {
+    setIsAuth(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsAuth(false);
+  }, []);
   return (
     <div className='App'>
       <AuthContext.Provider
         value={{
-          isAuth: true,
+          isAuth: isAuth,
+          showSignInModal: showSignInForm,
           about: 'I love sneaky beaky like ghost',
           fullname: 'Yevhenii Breiter',
           username: 'Mirandoo',
+          toogleSignInModal: handleSingInFormToogle,
+          login: login,
+          logout: logout,
         }}>
         <MediaContext.Provider
           value={{
