@@ -76,7 +76,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
             if (drawerVariant === 'temporary') {
               onClose();
             }
-            history.push('/map');
+            history.push('/');
           }}
         />
 
