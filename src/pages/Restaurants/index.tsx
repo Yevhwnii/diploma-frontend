@@ -8,12 +8,12 @@ interface RestaurantsProps {}
 
 const Restaurants: React.FC<RestaurantsProps> = () => {
   const [restaurants, setRestaurants] = useState<IRestaurant[]>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setLoading(true);
     const getResponse = async () => {
-      const response = await RestrauntsApi.getAll();
+      const response = await RestrauntsApi.getAllDb();
       setRestaurants(response);
       setLoading(false);
     };
