@@ -42,7 +42,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [media]);
 
   return (
-    <Grid container style={{ height: '100%' }}>
+    <Grid
+      container
+      style={{
+        height: '100%',
+        maxHeight: 'calc(100vh - 64px)',
+        overflowY: 'hidden',
+      }}>
       <Grid item xs={displayConfig.side} />
       <Grid item xs={displayConfig.main}>
         {children}
