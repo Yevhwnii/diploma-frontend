@@ -6,10 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+
 import ProfileIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MapIcon from '@material-ui/icons/Map';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import CloseIcon from '@material-ui/icons/Close';
+import AdminIcon from '@material-ui/icons/SupervisorAccount';
 
 import SideDrawer from '../../../../components/Drawer';
 import CustomizedListItem from '../../../../components/ListItem';
@@ -101,6 +103,17 @@ const SideMenu: React.FC<SideMenuProps> = ({
               onClose();
             }
             history.push('/restaurants');
+          }}
+        />
+
+        <CustomizedListItem
+          icon={<AdminIcon />}
+          text='Admin panel'
+          onClick={() => {
+            if (drawerVariant === 'temporary') {
+              onClose();
+            }
+            history.push('/admin');
           }}
         />
       </List>
