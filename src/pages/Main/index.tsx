@@ -6,11 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import NavigationBar from './containers/AppBar';
 import SideMenu from './containers/SideMenu';
 import Restaurants from '../Restaurants';
-import { MediaContext } from '../../common/context/mediaContext';
 import SingleRestaurant from '../SingleRestaurant';
 import Map from '../Map';
 import PageNotFound from '../404';
 import Profile from '../Profile';
+import Admin from '../Admin';
+import AddRestaurant from '../Admin/AddRestaurant';
+import { MediaContext } from '../../common/context/mediaContext';
 import { AuthContext } from '../../common/context/authContext';
 
 const Main: React.FC = () => {
@@ -65,6 +67,12 @@ const Main: React.FC = () => {
             </Route>
             <Route path='/restaurants/:id'>
               <SingleRestaurant />
+            </Route>
+            <Route path='/admin/new'>
+              <AddRestaurant />
+            </Route>
+            <Route path='/admin'>
+              <Admin />
             </Route>
             {auth.isAuth && (
               <Route path='/profile'>
