@@ -65,9 +65,7 @@ const Menu: React.FC<MenuProps> = ({ show, onClose, restaurant }) => {
         </div>
         <div className={classes.container}>
           {restaurant?.menu?.items.map((category) => {
-            return (
-              <Category name={category.category} items={category.menuItems} />
-            );
+            return <Category name={category.category} items={category.meals} />;
           })}
         </div>
         <div className={classes.actions}>

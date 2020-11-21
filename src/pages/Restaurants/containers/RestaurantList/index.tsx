@@ -20,7 +20,9 @@ const RestaurantList: React.FC<RestaurantListProps> = ({
       {!loading ? (
         <List style={{ height: '100%' }}>
           {restaurants?.map((restaurant) => {
-            return <Restaurant key={restaurant.id} restaurant={restaurant} />;
+            return (
+              <Restaurant keyProp={restaurant._id} restaurant={restaurant} />
+            );
           })}
         </List>
       ) : (

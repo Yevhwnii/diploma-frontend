@@ -46,19 +46,8 @@ const Map: React.FC = () => {
 
   useEffect(() => {
     const getResponse = async () => {
-      let restaurantsTemp: IRestaurant[] = [];
-      const response = await RestrauntsApi.getAll();
-      response.forEach(async (restaurant) => {
-        const response = await RestrauntsApi.getRestaurantLocation(restaurant);
-        restaurantsTemp = [
-          ...restaurantsTemp,
-          {
-            ...restaurant,
-            location: response,
-          },
-        ];
-        setRestaurants(restaurantsTemp);
-      });
+      const response = await RestrauntsApi.getAllDb();
+      setRestaurants(response);
     };
 
     getResponse();
@@ -96,16 +85,16 @@ const Map: React.FC = () => {
                 }}>
                 {showInfoWindowId === restaurant._id ? (
                   <InfoWindow
-                    key={restaurant.id}
+                    key={restaurant._id}
                     onCloseClick={handleInfoWindowClose}>
                     {media.xsSmallScreen ? (
                       <RestaurantMapMobile
-                        key={restaurant.webSite}
+                        key={restaurant.website}
                         restaurant={restaurant}
                       />
                     ) : (
                       <Restaurant
-                        key={restaurant.webSite}
+                        key={restaurant.website}
                         disableBottomBorder
                         restaurant={restaurant}
                       />

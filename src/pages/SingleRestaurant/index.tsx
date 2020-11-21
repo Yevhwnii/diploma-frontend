@@ -98,14 +98,14 @@ const SingleRestaurant = () => {
   const media = useContext(MediaContext);
   const classes = useSingRestaurantStyles(media);
   const [restaurant, setRestaurant] = useState<IRestaurant | null>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const params: { id: string } = useParams();
 
   useEffect(() => {
     setLoading(true);
     const getRestaurant = async (id: string) => {
-      const restaurant = await RestrauntsApi.getSingle(id);
+      const restaurant = await RestrauntsApi.getSingleDb(id);
       setRestaurant(restaurant);
       setLoading(false);
     };
@@ -140,8 +140,8 @@ const SingleRestaurant = () => {
           <div className={classes.footer}>
             <Typography>ul.{restaurant?.address}</Typography>
             <b>{bulletSymbol}</b>
-            <Link target='_blank' href={`http://${restaurant?.webSite}`}>
-              {restaurant?.webSite}
+            <Link target='_blank' href={`http://${restaurant?.website}`}>
+              {restaurant?.website}
             </Link>
           </div>
           <div className={classes.tags}>

@@ -70,7 +70,7 @@ const RestaurantMapMobile: React.FC<RestaurantProps> = ({ restaurant }) => {
   const classes = useRestaurantMapStyles();
   return (
     <ButtonBase
-      onClick={() => history.push(`/restaurants/${restaurant.id}`)}
+      onClick={() => history.push(`/restaurants/${restaurant._id}`)}
       style={{ height: '16.6666%' }}
       centerRipple>
       <ListItem className={classes.listItem}>
@@ -80,8 +80,8 @@ const RestaurantMapMobile: React.FC<RestaurantProps> = ({ restaurant }) => {
           </div>
           <div className={classes.header}>
             <Typography>{restaurant.name}</Typography>
-            <Link target='_blank' href={`http://${restaurant.webSite}`}>
-              {restaurant.webSite}
+            <Link target='_blank' href={`http://${restaurant.website}`}>
+              {restaurant.website}
             </Link>
           </div>
           <div className={classes.body}>

@@ -78,11 +78,13 @@ const useRestaurantStyles = makeStyles(() => ({
 export interface RestaurantProps {
   restaurant: IRestaurant;
   disableBottomBorder?: boolean;
+  keyProp?: any;
 }
 
 const Restaurant: React.FC<RestaurantProps> = ({
   restaurant,
   disableBottomBorder = false,
+  keyProp,
 }) => {
   const media = useContext(MediaContext);
   const history = useHistory();
@@ -93,10 +95,10 @@ const Restaurant: React.FC<RestaurantProps> = ({
   return (
     <>
       <ButtonBase
-        onClick={() => history.push(`/restaurants/${restaurant.id}`)}
+        onClick={() => history.push(`/restaurants/${restaurant._id}`)}
         style={{ height: '16.6666%' }}
         centerRipple>
-        <ListItem className={classes.listItem}>
+        <ListItem key={keyProp} className={classes.listItem}>
           <Grid container spacing={3}>
             <Grid className={classes.avatar} item xs={3}>
               <Avatar alt={restaurant.name} src={restaurant.imageUrl} />
@@ -105,8 +107,8 @@ const Restaurant: React.FC<RestaurantProps> = ({
               <div className={classes.header}>
                 <Typography>{restaurant.name}</Typography>
                 <b>{bulletSymbol}</b>
-                <Link target='_blank' href={`http://${restaurant.webSite}`}>
-                  {restaurant.webSite}
+                <Link target='_blank' href={`http://${restaurant.website}`}>
+                  {restaurant.website}
                 </Link>
               </div>
               <div className={classes.body}>
