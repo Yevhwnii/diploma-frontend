@@ -1,70 +1,131 @@
 {
-    "restaurants": [
-        {
-            "id": 1,
-            "_id": "5f625ff6bd97609c6925e2b4",
-            "name": "Maxxi Pizza",
-            "description": "Pizzeria MaxiPizza - Doskonała pizza w super cenie. Oferujemy wiele rodzajów pizzy na cienkim i grubym cieście.",
-            "imageUrl": "https://static.takeaway.com/images/restaurants/pl/OR1ORRP/logo_465x320.png?timestamp=1602244437",
-            "address": "Unicka, 3",
-            "webSite": "maxipizza.pl",
-            "tags": "#pizza #coffee #burger"
-        },
-        {
-            "id": 2,
-            "_id": "5f625ff6bd97609c6925e2b5",
-            "name": "Kebab U Mustafy",
-            "description": "U Kebaba Mustafy masz do wyboru: rodzaj dania, mięsa, pieczywa, dodatków, sosów i napoi. To ponad milion kombinacji w jaki sposób zjesz! Sprawdź menu.",
-            "imageUrl": "data:image/png;base64,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",
-            "address": "Unicka, 4",
-            "webSite": "kebabmustafa.pl",
-            "tags": "#kebab #coffee"
-        },
-        {
-            "id": 3,
-            "_id": "5f625ff6bd97609c6925e2b3",
-            "name": "Sexy Duck",
-            "description": "Craft Italian Kitchen. Czuj się naszym gościem ",
-            "imageUrl": "https://i.ibb.co/BtSkSX5/Untitled.jpg",
-            "address": "Stanisława Staszica 1, 20-081 Lublin",
-            "webSite": "sexyduck.pl/lublin",
-            "tags": "#pizza #coffee #burger",
-            "menu": {
-                "_id": "5f625ff6bd97609c6925e2bg",
-                "items": [
-                    {
-                        "category": "Pizza",
-                        "menuItems": [{
-                            "id": "1",
-                            "name": "Pizza Margharitta",
-                            "price": 32
-                        },{
-                            "id": "323",
-                            "name": "Pizza Kebab",
-                            "price": 35
-                        }]
-                    },
-                    {
-                        "category": "Dania obiadowe",
-                        "menuItems": [{
-                            "id": "222",
-                            "name": "Lasagnia",
-                            "price": 22
-                        },{
-                            "id": "3223",
-                            "name": "Pasta with seaproducts",
-                            "price": 21
-                        }]
-                    },{
-                        "category": "Salad",
-                        "menuItems": [{
-                            "id": "12",
-                            "name": "Salad Cesar",
-                            "price": 10
-                        }]
-                    }
-                ]
-            }
-        }
-    ]
+  "restaurants": [
+    {
+      "id": 1,
+      "_id": "5f625ff6bd97609c6925e2b4",
+      "name": "Maxxi Pizza",
+      "description": "Pizzeria MaxiPizza - Doskonała pizza w super cenie. Oferujemy wiele rodzajów pizzy na cienkim i grubym cieście.",
+      "imageUrl": "https://static.takeaway.com/images/restaurants/pl/OR1ORRP/logo_465x320.png?timestamp=1602244437",
+      "address": "Unicka, 3",
+      "webSite": "maxipizza.pl",
+      "tags": "#pizza #coffee #burger"
+    },
+    {
+      "id": 2,
+      "_id": "5f625ff6bd97609c6925e2b5",
+      "name": "Kebab U Mustafy",
+      "description": "U Kebaba Mustafy masz do wyboru: rodzaj dania, mięsa, pieczywa, dodatków, sosów i napoi. To ponad milion kombinacji w jaki sposób zjesz! Sprawdź menu.",
+      "imageUrl": "data:image/png;base64,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",
+      "address": "Unicka, 4",
+      "webSite": "kebabmustafa.pl",
+      "tags": "#kebab #coffee"
+    },
+    {
+      "id": 3,
+      "_id": "5f625ff6bd97609c6925e2b3",
+      "name": "Sexy Duck",
+      "description": "Craft Italian Kitchen. Czuj się naszym gościem ",
+      "imageUrl": "https://i.ibb.co/BtSkSX5/Untitled.jpg",
+      "address": "Stanisława Staszica 1, 20-081 Lublin",
+      "webSite": "sexyduck.pl/lublin",
+      "tags": "#pizza #coffee #burger",
+      "menu": {
+        "_id": "5f625ff6bd97609c6925e2bg",
+        "items": [
+          {
+            "category": "Pizza",
+            "menuItems": [
+              {
+                "id": "1",
+                "name": "Pizza Margharitta",
+                "price": 32
+              },
+              {
+                "id": "323",
+                "name": "Pizza Kebab",
+                "price": 35
+              }
+            ]
+          },
+          {
+            "category": "Dania obiadowe",
+            "menuItems": [
+              {
+                "id": "222",
+                "name": "Lasagnia",
+                "price": 22
+              },
+              {
+                "id": "3223",
+                "name": "Pasta with seaproducts",
+                "price": 21
+              }
+            ]
+          },
+          {
+            "category": "Salad",
+            "menuItems": [
+              {
+                "id": "12",
+                "name": "Salad Cesar",
+                "price": 10
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Sexy Duck",
+      "description": "Craft Italian Kitchen. Czuj się naszym gościem ",
+      "imageUrl": "https://i.ibb.co/BtSkSX5/Untitled.jpg",
+      "address": "Stanisława Staszica 1, 20-081 Lublin",
+      "website": "sexyduck.pl/lublin",
+      "location": {
+        "lat": 51.2484658,
+        "lng": 22.5603755
+      },
+      "tags": "#pizza #coffee #burger",
+      "menu": {
+        "items": [
+          {
+            "category": "Pizza",
+            "meals": [
+              {
+                "name": "Pizza Margharitta",
+                "price": 32
+              },
+              {
+                "name": "Pizza Kebab",
+                "price": 35
+              }
+            ]
+          },
+          {
+            "category": "Dania obiadowe",
+            "meals": [
+              {
+                "name": "Lasagnia",
+                "price": 22
+              },
+              {
+                "name": "Pasta with seaproducts",
+                "price": 21
+              }
+            ]
+          },
+          {
+            "category": "Salad",
+            "meals": [
+              {
+                "name": "Salad Cesar",
+                "price": 10
+              }
+            ]
+          }
+        ]
+      },
+      "id": 4
+    }
+  ]
 }
