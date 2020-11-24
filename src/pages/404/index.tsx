@@ -43,7 +43,7 @@ const PageNotFound = () => {
           </div>
           <div className={classes.centirilize}>
             <Button
-              onClick={() => history.push('/map')}
+              onClick={() => history.push('/')}
               variant='contained'
               color='primary'>
               Back to application
