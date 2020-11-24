@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
 import { AuthContext } from '../../common/context/authContext';
+import { UserContext } from '../../common/context/userContext';
 
 const useProfileStyles = makeStyles(() => ({
   root: {
@@ -33,10 +34,7 @@ const useProfileStyles = makeStyles(() => ({
     flexDirection: 'column',
     height: '70%',
     padding: 7,
-    '& h6': {
-      fontSize: 24,
-      marginBottom: 10,
-    },
+    textAlign: 'center',
     '& p': {
       color: grey[600],
       fontWeight: 400,
@@ -47,17 +45,17 @@ const useProfileStyles = makeStyles(() => ({
 const Profile = () => {
   const classes = useProfileStyles();
   const auth = useContext(AuthContext);
+  const user = useContext(UserContext);
 
   return (
     <Layout>
       <PaperLayout styles={{ height: '40%' }}>
         <div className={classes.root}>
           <div className={classes.information}>
-            <Typography variant='h5'>{auth.fullname}</Typography>
-            <Typography variant='body1'>@{auth.username}</Typography>
+            <Typography variant='h5'>{user.fullname}</Typography>
+            <Typography variant='body1'>@{user.username}</Typography>
           </div>
           <div className={classes.aboutMe}>
-            <Typography variant='h6'>About me:</Typography>
             <Typography variant='body1'>{auth.about}</Typography>
           </div>
         </div>
