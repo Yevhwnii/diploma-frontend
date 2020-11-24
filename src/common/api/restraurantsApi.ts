@@ -74,18 +74,26 @@ export const RestrauntsApi = {
     console.log(location);
 
     try {
-      const response = await axios.post('http://localhost:4000/restaurants', {
-        name: restaurant.name,
-        description: restaurant.description,
-        imageUrl: restaurant.imageUrl,
-        address: restaurant.address,
-        location: location,
-        tags: restaurant.tags,
-        website: restaurant.website,
-        menu: {
-          items: [...restaurant.menu.items],
+      const response = await axios.post(
+        'http://localhost:4000/restaurants',
+        {
+          name: restaurant.name,
+          description: restaurant.description,
+          imageUrl: restaurant.imageUrl,
+          address: restaurant.address,
+          location: location,
+          tags: restaurant.tags,
+          website: restaurant.website,
+          menu: {
+            items: [...restaurant.menu.items],
+          },
         },
-      });
+        {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('tid'),
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error.message);
@@ -93,7 +101,11 @@ export const RestrauntsApi = {
   },
   delete: async (id: string): Promise<void> => {
     try {
-      await axios.delete(`http://localhost:4000/restaurants/${id}`);
+      await axios.delete(`http://localhost:4000/restaurants/${id}`, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('tid'),
+        },
+      });
     } catch (error) {
       console.log(error.message);
     }
