@@ -14,12 +14,14 @@ import Admin from '../Admin';
 import AddRestaurant from '../Admin/AddRestaurant';
 import { MediaContext } from '../../common/context/mediaContext';
 import { AuthContext } from '../../common/context/authContext';
+import { UserContext } from '../../common/context/userContext';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
   const [sideMenuStyles, setSideMenuStyles] = useState({});
   const media = useContext(MediaContext);
   const auth = useContext(AuthContext);
+  const user = useContext(UserContext);
   const mdSmallScreen = media.mdSmallScreen;
 
   // If viewport is less than 950px, side menu automatically closes
@@ -68,14 +70,18 @@ const Main: React.FC = () => {
             <Route path='/restaurants/:id'>
               <SingleRestaurant />
             </Route>
-            <Route path='/admin/new'>
-              <AddRestaurant />
-            </Route>
-            <Route path='/admin'>
-              <Admin />
-            </Route>
+            {user.isAdmin && (
+              <Route path='/admin/new' exact>
+                <AddRestaurant />
+              </Route>
+            )}
+            {user.isAdmin && (
+              <Route path='/admin' exact>
+                <Admin />
+              </Route>
+            )}
             {auth.isAuth && (
-              <Route path='/profile'>
+              <Route path='/profile' exact>
                 <Profile />
               </Route>
             )}
@@ -85,7 +91,7 @@ const Main: React.FC = () => {
             <Route path='/'>
               <PageNotFound />
             </Route>
-            <Redirect to='/map' />
+            {/* <Redirect to='/map' /> */}
           </Switch>
         </Grid>
       </Grid>
