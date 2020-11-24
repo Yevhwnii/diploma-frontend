@@ -90,13 +90,32 @@ const SignIn: React.FC<SignInProps> = ({ open, onClose }) => {
   const { register, handleSubmit, errors } = useForm<FormData>();
   const [signInMode, setsignInMode] = useState<boolean>(true);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     if (signInMode) {
-      console.log('Sign In', data);
-      auth.login();
-      onClose();
+      const { isOk } = await auth.login({
+        username: data.username,
+        password: data.password,
+      });
+      if (isOk) {
+        onClose();
+      }
     } else {
       console.log('Sign Up', data);
+      const { isOk } = await auth.signUp({
+        username: data.username,
+        fullname: data.fullname!,
+        password: data.password,
+      });
+
+      if (isOk) {
+        const response = await auth.login({
+          username: data.username,
+          password: data.password,
+        });
+        if (response.isOk) {
+          onClose();
+        }
+      }
     }
   };
 
@@ -111,12 +130,12 @@ const SignIn: React.FC<SignInProps> = ({ open, onClose }) => {
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={classes.input}>
             <TextField
-              name='email'
-              type='email'
+              name='username'
+              type='text'
               fullWidth
-              label='Email'
+              label='Username'
               variant='outlined'
-              inputRef={register({ required: true, pattern: /^\S+@\S+$/i })}
+              inputRef={register({ required: true, minLength: 5 })}
             />
           </div>
           {!signInMode && (
@@ -154,6 +173,9 @@ const SignIn: React.FC<SignInProps> = ({ open, onClose }) => {
                 should contain at least 6 char.){' '}
               </Typography>
             ) : null}
+            {auth.authErrorMessage && (
+              <Typography>Invalid credentials</Typography>
+            )}
           </div>
           <div className={classes.actions}>
             <Button type='submit' variant='contained' color='primary'>
