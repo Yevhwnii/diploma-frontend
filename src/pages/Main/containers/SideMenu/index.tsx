@@ -18,6 +18,7 @@ import CustomizedListItem from '../../../../components/ListItem';
 import SearchBar from '../../../../components/SearchBar';
 import { MediaContext } from '../../../../common/context/mediaContext';
 import { AuthContext } from '../../../../common/context/authContext';
+import { UserContext } from '../../../../common/context/userContext';
 
 const useSideMenuStyles = makeStyles(() => ({
   header: {
@@ -48,6 +49,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
   const history = useHistory();
   const media = useContext(MediaContext);
   const auth = useContext(AuthContext);
+  const user = useContext(UserContext);
 
   return (
     <SideDrawer drawerVariant={drawerVariant} show={show} onClose={onClose}>
@@ -106,16 +108,18 @@ const SideMenu: React.FC<SideMenuProps> = ({
           }}
         />
 
-        <CustomizedListItem
-          icon={<AdminIcon />}
-          text='Admin panel'
-          onClick={() => {
-            if (drawerVariant === 'temporary') {
-              onClose();
-            }
-            history.push('/admin');
-          }}
-        />
+        {user.isAdmin && (
+          <CustomizedListItem
+            icon={<AdminIcon />}
+            text='Admin panel'
+            onClick={() => {
+              if (drawerVariant === 'temporary') {
+                onClose();
+              }
+              history.push('/admin');
+            }}
+          />
+        )}
       </List>
     </SideDrawer>
   );
