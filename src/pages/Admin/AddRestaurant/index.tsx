@@ -310,7 +310,15 @@ const AddRestaurant: React.FC = () => {
             </div>
 
             <div>
-              <Typography>Menu</Typography>
+              <Typography
+                style={{
+                  textAlign: 'center',
+                  margin: '15px 0px',
+                  fontSize: 24,
+                  fontWeight: 700,
+                }}>
+                Menu
+              </Typography>
               {menuItems}
             </div>
             <Button
