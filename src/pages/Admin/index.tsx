@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { IRestaurant, RestrauntsApi } from '../../common/api/restraurantsApi';
 import Layout from '../../components/Layout';
@@ -13,6 +13,8 @@ import Divider from '@material-ui/core/Divider';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
 import { useHistory } from 'react-router-dom';
+import { MediaContext } from '../../common/context/mediaContext';
+import IconButton from '@material-ui/core/IconButton';
 
 const useAdminStyles = makeStyles(() => ({
   header: {
@@ -34,6 +36,7 @@ const useAdminStyles = makeStyles(() => ({
 const Admin = () => {
   const classes = useAdminStyles();
   const history = useHistory();
+  const media = useContext(MediaContext);
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -57,15 +60,21 @@ const Admin = () => {
 
   return (
     <Layout>
-      <PaperLayout>
+      <PaperLayout styles={{ height: '87%' }}>
         <div className={classes.header}>
           <Typography>Manage restaurants</Typography>
-          <Button
-            onClick={() => history.push(`/admin/new`)}
-            startIcon={<AddIcon />}
-            variant='text'>
-            Add new restaurant
-          </Button>
+          {media.xsSmallScreen ? (
+            <IconButton>
+              <AddIcon />
+            </IconButton>
+          ) : (
+            <Button
+              onClick={() => history.push(`/admin/new`)}
+              startIcon={<AddIcon />}
+              variant='text'>
+              Add new restaurant
+            </Button>
+          )}
         </div>
         <Divider />
         {!loading ? (
@@ -73,6 +82,7 @@ const Admin = () => {
             return (
               <List>
                 <AdminRestaurant
+                  key={index}
                   restaurant={restaurant}
                   restaurantIndex={index}
                   onDelete={onDeleteHandler}
