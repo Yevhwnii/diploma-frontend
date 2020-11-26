@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Search from 'material-ui-search-bar';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 const useSearchBarStyles = makeStyles((theme) => ({
   searchBar: {
@@ -25,11 +26,14 @@ const useSearchBarStyles = makeStyles((theme) => ({
 
 interface SearchBarProps {
   componentVariant: 'li';
+  onClose: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ componentVariant }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ componentVariant, onClose }) => {
   const classes = useSearchBarStyles();
+  const history = useHistory();
   const [focusClass, setFocusClass] = useState<string | undefined>();
+  const [input, setInput] = useState<any>('');
 
   const handleFocus = () => {
     setFocusClass(classes.activeSearchBar);
@@ -38,6 +42,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ componentVariant }) => {
   const handleBlur = () => {
     setFocusClass(undefined);
   };
+
+  const handleSearch = () => {
+    history.push(`/restaurants/search?q=${input}`);
+    onClose();
+  };
   if (componentVariant === 'li') {
     return (
       <>
@@ -45,7 +54,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ componentVariant }) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           className={clsx(classes.searchBar, focusClass)}>
-          <Search placeholder='Search...' />
+          <Search
+            value={input}
+            onRequestSearch={handleSearch}
+            onChange={(newValue) => setInput(newValue)}
+            placeholder='Search...'
+          />
         </ListItem>
         <Divider />
       </>
