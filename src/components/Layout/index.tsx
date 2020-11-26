@@ -47,7 +47,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       style={{
         height: '100%',
         maxHeight: 'calc(100vh - 64px)',
-        overflowY: 'hidden',
+        overflowY: 'auto',
       }}>
       <Grid item xs={displayConfig.side} />
       <Grid item xs={displayConfig.main}>
