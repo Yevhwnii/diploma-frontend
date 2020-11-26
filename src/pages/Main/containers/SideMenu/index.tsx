@@ -71,7 +71,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
           </>
         )}
 
-        <SearchBar componentVariant='li' />
+        <SearchBar onClose={onClose} componentVariant='li' />
 
         <CustomizedListItem
           icon={<MapIcon />}
