@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -15,6 +15,7 @@ import AddRestaurant from '../Admin/AddRestaurant';
 import { MediaContext } from '../../common/context/mediaContext';
 import { AuthContext } from '../../common/context/authContext';
 import { UserContext } from '../../common/context/userContext';
+import Search from '../Search';
 
 const Main: React.FC = () => {
   const [showSideMenu, setShowSideMenu] = useState<boolean>(true);
@@ -67,6 +68,9 @@ const Main: React.FC = () => {
             <Route path='/restaurants' exact>
               <Restaurants />
             </Route>
+            <Route path='/restaurants/search'>
+              <Search />
+            </Route>
             <Route path='/restaurants/:id'>
               <SingleRestaurant />
             </Route>
@@ -91,7 +95,6 @@ const Main: React.FC = () => {
             <Route path='/'>
               <PageNotFound />
             </Route>
-            {/* <Redirect to='/map' /> */}
           </Switch>
         </Grid>
       </Grid>
