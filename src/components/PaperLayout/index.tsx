@@ -14,6 +14,7 @@ const usePaperLayoutStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '90vh',
+    overflow: 'auto',
   }),
 }));
 
