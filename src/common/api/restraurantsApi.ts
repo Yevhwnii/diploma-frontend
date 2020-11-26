@@ -110,4 +110,14 @@ export const RestrauntsApi = {
       console.log(error.message);
     }
   },
+  search: async (query: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/restaurants/search?q=${query}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
 };
