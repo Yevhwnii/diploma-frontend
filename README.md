@@ -6,6 +6,7 @@ In the project directory, you can run:
 
 This will run application on port 3000, for proper work requires back-end part of application to be
 started as well.
+https://github.com/Yevhwnii/diploma-backend
 
 ## Description
 
